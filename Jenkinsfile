@@ -9,14 +9,14 @@ pipeline {
             steps {
                 // Chekout repo
                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/imadfaouzi/build_sprgbt_and_push_to_nexus']])
-               bat "mvn clean install"
+               sh "mvn clean install"
 
             }
         }
          stage('Build Docker image') {
               steps {
                   script{
-                      bat "docker build -t 192.168.100.128:8111/my_first_nexus_repo/build_sprgbt_and_push_to_nexus:latest ."
+                      sh "docker build -t 192.168.100.128:8111/my_first_nexus_repo/build_sprgbt_and_push_to_nexus:latest ."
                     }
               }
          }
